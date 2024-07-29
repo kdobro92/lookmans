@@ -1,5 +1,5 @@
 import { Inter } from 'next/font/google'
-// import Script from 'next/script'
+import Script from 'next/script'
 import Head from 'next/head'
 import './globals.css'
 
@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
-        <script
+        <Script
           src={`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.KAKAO_APP_KEY}&libraries=services,clusterer,drawing`}
           strategy="beforeInteractive"
         />

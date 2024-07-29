@@ -1,21 +1,24 @@
 'use client'
-import { useImageBounce } from '@/hooks/useImageBounce';
+import { useImageBounce } from '@/hooks/useImageBounce'
 
 export default function About() {
-  const { imageRefs } = useImageBounce();
+  const { imageRefs } = useImageBounce()
 
   return (
     <div id="about" className="">
       <main>
         <div className="relative z-10 bg-gray-900 pb-20 sm:pb-24 xl:pb-0 h-full flex items-center">
-          <div aria-hidden="true" className="absolute inset-0 overflow-hidden h-full">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 overflow-hidden h-full"
+          >
             <div className="absolute left-[calc(50%-19rem)] top-[calc(50%-36rem)] transform-gpu blur-3xl h-full">
               <div
                 style={{
                   clipPath:
                     'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
                 }}
-                className="aspect-[1097/1023] w-[68.5625rem] bg-gradient-to-r from-blue-500 to-indigo-900 opacity-25 h-full transition-transform transform hover:rotate-3" 
+                className="aspect-[1097/1023] w-[68.5625rem] bg-gradient-to-r from-blue-500 to-indigo-900 opacity-25 h-full transition-transform transform hover:rotate-3"
               />
             </div>
           </div>
@@ -26,7 +29,7 @@ export default function About() {
                   alt="ceo image"
                   src="/images/ceo.jpg"
                   className="absolute inset-0 h-full w-full rounded-2xl bg-gray-800 object-cover shadow-2xl transition-transform transform hover:rotate-3"
-                  ref={(el) => (imageRefs.current[0] = el)} 
+                  ref={(el) => (imageRefs.current[0] = el)}
                 />
               </div>
             </div>
@@ -46,9 +49,9 @@ export default function About() {
                 </svg>
                 <blockquote className="text-xl font-semibold leading-8 text-white sm:text-2xl sm:leading-9">
                   <p>
-                     친절한 서비스와 탁월한 기술로 고객 만족도를 높입니다.
-                     고급 제품 사용과 전문적인 관리로 최상의 결과를 보장합니다.
-                     편안한 분위기와 세심한 배려로 특별한 시간을 만들어드립니다.
+                    친절한 서비스와 탁월한 기술로 고객 만족도를 높입니다. 고급
+                    제품 사용과 전문적인 관리로 최상의 결과를 보장합니다. 편안한
+                    분위기와 세심한 배려로 특별한 시간을 만들어드립니다.
                   </p>
                 </blockquote>
                 <figcaption className="mt-8 text-base">
@@ -58,7 +61,7 @@ export default function About() {
               </figure>
             </div>
           </div>
-        </div>    
+        </div>
       </main>
     </div>
   )
