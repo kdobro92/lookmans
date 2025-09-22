@@ -68,7 +68,7 @@ const Blog = () => {
     try {
       console.log('📡 RSS 피드로 edgerok 블로그 포스트를 가져오는 중...');
       
-      // RSS 피드에서 edgerok 블로그 포스트 가져오기
+      // RSS 피드에서 edgerok 블로그 포스트 가져오기 (우선순위 1)
       const result = await rssService.getBlogPostsFromRSS('edgerok');
       
       // 카테고리별 필터링
@@ -95,13 +95,35 @@ const Blog = () => {
     } catch (error) {
       console.error('RSS 피드 로드 실패:', error);
       
-      // RSS 피드 실패 시 폴백 데이터 사용
-      console.log('📋 폴백 데이터를 사용합니다.');
-      const fallbackResult = naverBlogService.getFallbackBlogs(selectedCategory);
-      setPosts(fallbackResult.posts);
-      setHasMore(fallbackResult.hasMore);
-      
-      setError('RSS 피드에서 데이터를 가져올 수 없습니다. 폴백 데이터를 표시합니다.');
+      // RSS 피드 실패 시 네이버 API 시도 (우선순위 2)
+      try {
+        console.log('📡 네이버 API로 재시도 중...');
+        const apiResult = await naverBlogService.getBlogPosts('https://blog.naver.com/edgerok');
+        
+        let filteredPosts = apiResult.posts;
+        if (selectedCategory !== 'all') {
+          filteredPosts = apiResult.posts.filter(post => post.category === selectedCategory);
+        }
+        
+        setPosts(filteredPosts);
+        setHasMore(apiResult.hasMore);
+        setError(null);
+        
+        console.log(`✅ 네이버 API에서 ${filteredPosts.length}개의 포스트를 표시합니다.`);
+        
+        if (filteredPosts.length === 0) {
+          setError('네이버 API에서도 포스트를 가져올 수 없습니다.');
+        }
+      } catch (apiError) {
+        console.error('네이버 API도 실패:', apiError);
+        
+        // 모든 방법 실패 시 폴백 데이터 사용 (우선순위 3)
+        console.log('📋 폴백 데이터를 사용합니다.');
+        const fallbackResult = naverBlogService.getFallbackBlogs(selectedCategory);
+        setPosts(fallbackResult.posts);
+        setHasMore(fallbackResult.hasMore);
+        setError('RSS 피드와 네이버 API 모두 실패했습니다. 폴백 데이터를 표시합니다.');
+      }
     } finally {
       setLoading(false);
     }
