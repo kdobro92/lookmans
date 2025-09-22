@@ -1,0 +1,29 @@
+/* 미용실 페이지 전용 스타일 */
+.App {
+  min-height: 100vh;
+}
+
+/* 부드러운 스크롤 애니메이션 */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* 그라데이션 오버레이 */
+.gradient-overlay {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+}
+
+/* 커스텀 그림자 */
+.custom-shadow {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* 호버 효과 */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+}
